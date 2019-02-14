@@ -10,7 +10,7 @@ We will be providing you with tasks to implement during this coding challenge (w
 
 Please keep in mind:
 
-* We will be evaluating every pull request you send based on the rubric that we provided in the `rubric.md` file here.
+* We will be evaluating every pull request you send based on the rubric that we provided in the [`rubric.md`](rubric.md) file here.
 * You can expect to have 2-4 tasks depending on the responses. We can also stop the coding challenge after your first pull-request.
 * We will not be reviewing your story/task branches, only your pull-request.
 * Please, only implement what is asked in the current active task. Nothing less, nothing more. And of course, pay extra attention to providing tests.
@@ -25,7 +25,7 @@ We also provided you with a [skeleton app](client/MyBingeList) . Feel free to ch
 
 ## The "Backend"
 
-We also provided you a mock API server to build the app against. You will find a [`server\docker-compose.yml`](server\docker-compose.yml) file that has the server available. In order to run the server locally on your machine follow the next steps:
+We also provided you a mock API server to build the app against. You will find a [`server/docker-compose.yml`](server/docker-compose.yml) file that has the server available. In order to run the server locally on your machine follow the next steps:
 
 * Please (if not already) install [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 * Once you clone this repo on your local machine, go to the server folder and run `docker-compose up` in your terminal window. This will download the necessary containers and bring the service up.
