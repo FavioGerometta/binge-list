@@ -5,17 +5,18 @@ Hello and welcome to your coding challenge. In this challenge, you build the _My
 ## What you need
 
 * [**Docker**](https://docs.docker.com/install/) installed and running. Create a user account if you don't have one yet.
-* All you need to write and build great apps.
+* Your favourite tools you need to write and build great apps.
 
 ## How it works
 
-We provide you with tasks to implement during this coding challenge. When you are done, you need to send us a pull request. One of our engineers reviews it and gives feedback.  Sometimes you may be required to do a set of changes. If all goes well, you'll be able to merge the pull request which marks the end of the challenge.
+We provide you with [tasks](tasks.md) to implement during this coding challenge. When you are done, you need to send us a pull request. One of our engineers reviews it and gives feedback.  Sometimes you may be required to do a set of changes. If all goes well, you'll be able to merge the pull request which marks the end of the challenge.
 
 Please keep in mind:
 
 * We evaluate the pull request you send based on the [`quality_checklist.md`](quality_checklist.md).
 * We do not review any story/task branches, only your pull-request.
 * Pay extra attention to providing tests.
+* Treat the app and code base as production-ready.
 * We delete this repository once the final interview process is over.
 * Please **DO NOT publish** your solutions on a publicly. These coding challenges are intended for internal XING interview process only.
 
