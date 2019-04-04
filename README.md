@@ -13,7 +13,7 @@ We provide you with [tasks](tasks.md) to implement during this coding challenge.
 
 Please keep in mind:
 
-* We evaluate the pull request you send based on the [`quality_checklist.md`](quality_checklist.md).
+* We evaluate the pull request you send based on the [quality checklist](quality_checklist.md).
 * We do not review any story/task branches, only your pull-request.
 * Pay extra attention to providing tests.
 * Treat the app and code base as production-ready.
@@ -36,3 +36,5 @@ We also provided you a mock API server to build the app on top. You find a [`ser
 The service returns JSON data via [`http://localhost:4000`](http://localhost:4000). Find the documentation in the [Github repo for this service](https://github.com/keremk/movie-service).
 
 Run `docker-compose down` to stop the containers again.
+
+Now, let's get started. We wish you good luck!
