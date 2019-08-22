@@ -11,15 +11,15 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".SearchActivity">
+        <activity android:name=".screens.SearchActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".FavoritesActivity"
-                  android:parentActivityName=".SearchActivity"
+        <activity android:name=".screens.FavoritesActivity"
+                  android:parentActivityName=".screens.SearchActivity"
                   android:label="@string/favorites_title"/>
     </application>
 </manifest>

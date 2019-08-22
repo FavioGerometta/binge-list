@@ -7,6 +7,10 @@
     <string name="search_button">Search</string>
 
     <string name="menu_favorites">Favorites</string>
+    <!-- Search screen messages -->
+    <string name="txt_edit_no_input">A genre must be provided to perform a search</string>
+    <string name="menu_favorites2">Favorites</string>
+
 
     <!-- Favorites screen -->
     <string name="favorites_title">Favorite movies</string>

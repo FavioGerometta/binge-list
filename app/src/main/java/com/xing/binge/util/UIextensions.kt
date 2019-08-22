@@ -1,4 +1,4 @@
-package com.xing.binge
+package com.xing.binge.util
 
 import android.app.Activity
 import android.content.Context
