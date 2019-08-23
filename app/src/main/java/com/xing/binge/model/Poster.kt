@@ -1,3 +1,7 @@
 package com.xing.binge.model
 
-data class Poster(val fullPath: String,val size: String )
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Poster(val fullPath: String,val size: String ) : Parcelable

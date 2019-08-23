@@ -14,6 +14,9 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' //test instrumentation
         dataBinding.enabled = true // added data binding
     }
+    androidExtensions { // for using Parcelable
+        experimental = true
+    }
 }
 
 dependencies {

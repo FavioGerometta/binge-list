@@ -25,11 +25,12 @@
             android:layout_margin="@dimen/two_grid_unit"
             android:src="@drawable/ic_star" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imageView_movieListItem_favorite"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/seven_grid_unit"
             android:adjustViewBounds="true"
+            android:state_selected="false"
             android:src="@drawable/selector_favorite"
             app:srcCompat="@drawable/selector_favorite" />
     </FrameLayout>

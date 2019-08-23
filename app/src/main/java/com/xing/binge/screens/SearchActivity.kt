@@ -1,7 +1,9 @@
 package com.xing.binge.screens
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.text.Editable
 import android.view.KeyEvent
 import android.view.Menu
@@ -18,16 +20,22 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.xing.binge.R
 import com.xing.binge.api.ErrorManager
 import com.xing.binge.databinding.ActivitySearchBinding
+import com.xing.binge.model.Data
 import com.xing.binge.respositories.MovieMetadata
 import com.xing.binge.screens.adapters.MovieAdapter
 import com.xing.binge.util.*
 import com.xing.binge.vm.GenreViewModel
 import com.xing.binge.vm.MovieViewModel
+import java.util.*
+import kotlin.collections.HashMap
+
 
 class SearchActivity : AppCompatActivity() {
 
+    private val favourites : MutableMap<String, Data> = HashMap()
     lateinit var binding: ActivitySearchBinding
-    private val movieAdapter = MovieAdapter()
+    private val movieAdapter = MovieAdapter { item : Data -> favClicked(item) }
+
     private var genreSet: Set<String>? = null
 
     /* properties */
@@ -59,7 +67,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search)
         initializeList()
-        configureSearchInputListeners()
+        configureListeners()
         observeGenres()
         observeErrors()
     }
@@ -71,14 +79,41 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_item_favorite -> {
-               startActivity(Intent(this, FavoritesActivity::class.java))
+            com.xing.binge.R.id.menu_item_favorite -> {
+                val intent = Intent(this, FavoritesActivity::class.java)
+                intent.putParcelableArrayListExtra(
+                    FavoritesActivity.EXTRA,
+                    ArrayList<Parcelable>(favourites.values)
+                )
+                startActivityForResult(intent, FavoritesActivity.KEY)
             }
         }
         return true
     }
 
-    private fun configureSearchInputListeners() {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode === FavoritesActivity.KEY) {
+            when(resultCode){
+                Activity.RESULT_OK -> updateFavourites(data?.getParcelableArrayListExtra(FavoritesActivity.EXTRA))
+                //Activity.RESULT_CANCELED -> not foreseen at the moment //TODO: could be deleted in next version
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun updateFavourites(parcelableArrayListExtra: ArrayList<Parcelable>?) {
+        if(!parcelableArrayListExtra.isNullOrEmpty()){
+            (parcelableArrayListExtra as ArrayList<Data>).forEach { movie -> updateFavouriteItem(movie.id) }
+        }
+    }
+
+    private fun updateFavouriteItem(movieId: String) {
+        removeItemFromFavourites(movieId)
+        movieAdapter.removeFavourite(movieId)
+    }
+
+    private fun configureListeners() {
+        //search launched by keyboard icon
         searchEditText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -87,6 +122,7 @@ class SearchActivity : AppCompatActivity() {
                 return false
             }
         })
+        //search launched by button
         searchButton.setOnClickListener {
             startGenreSearch(searchEditText.text, true)
         }
@@ -150,6 +186,22 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    //another alternative could be not using this list and creating a getter in the adapter to return currentList and
+    //get those that are checked in the snapshot as fav's
+    private fun favClicked(item: Data) {
+        when(favourites.contains(item.id)){
+            true -> removeItemFromFavourites(item.id)
+            false-> addItemToFavourites(item)
+        }
+    }
+
+    private fun removeItemFromFavourites(itemId: String){
+        favourites.remove(itemId)
+    }
+
+    private fun addItemToFavourites(item: Data){
+        favourites[item.id] = item
+    }
 
 }
 
